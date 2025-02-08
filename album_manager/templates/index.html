@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Álbumes{% endblock title %}
+{% block content %}
+{% load static %}
+<h1 class="text-primary d-flex justify-content-center mt-3 mb-3"><strong>Álbumes:</strong></h1>
+{% if user.is_authenticated %}
+  <div class="d-flex justify-content-center mt-2 mb-4">
+    <a href="/add_album" class="btn btn-primary">Añadir álbum</a>
+  </div>
+{% endif %}
+<div class="row">
+  {% for album in albums %}
+    <div class="col-sm-2 m-5">
+      <div class="card" style="width: 1oo%;">
+        <img src="{{ album.portada.url }}" class="card-img-top" alt="{{ album.titulo_del_album }}">
+        <div class="card-body">
+          <h5 class="card-title">{{ album | capfirst }}</h5>
+          <p class="card-text">Nombre del álbum: {{ album.titulo_del_album }}</p>
+          <p class="card-text">Artista: {{ album.artista_asociado.nombre_del_artista }}</p>
+          <a href="/{{album.pk}}" class="btn btn-primary">
+            <i class="fa-solid fa-eye"></i>
+          </a>
+          {% if user.is_authenticated %}
+          <a href="/editar_album/{{album.pk}}" class="btn btn-primary">
+            <i class="fa-solid fa-pencil"></i>
+          </a>
+          <a href="/eliminar_album/{{album.pk}}" class="btn btn-danger">
+            <i class="fa-solid fa-trash"></i>
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&display=swap');
+
+.logo {
+    width: 150px;
+    height: auto;
+}
+
+.full-width-container {
+    width: 100%; /* Hace que ocupe todo el ancho */
+    height: 5em;
+    background-color: 0px 0px 15px 3px #f8f8f8; /* Color light (#f8f8f8) con 10% de transparencia */
+    /*border: 2px solid #05ce16; /* Borde con el color info de Bootstrap */
+    box-shadow: 0px 0px 15px 3px #273330; /* Efecto de iluminación en los bordes */
+    padding: 20px; /* Añade espacio interno */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+.container-fluid {
+    background-color: transparent;
+    background: none !important;
+}
+
+.navbar {
+    margin: 0 auto; /* Centra el navbar y evita espacios extra */
+    display: flex;
+    justify-content: center;
+}
+
+/* Contenedor de las tarjetas con espaciado entre ellas */
+.row {
+    display: flex;
+    justify-content: center; /* Centra los elementos dentro de la fila */
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+
+
+.col-sm-2 {
+    flex: 1; /* Asegura que las columnas se ajusten proporcionalmente */
+}
+
+
+/* Estilos de las tarjetas */
+.card {
+    width: 260px;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    transition: 0.5s;
+    cursor: pointer;
+    box-shadow: 0px 0px 15px 1px #273330;
+    border-radius: 16px;
+    background-color: transparent;
+    opacity: 1; /* Se asegura que todas las tarjetas se vean inicialmente */
+    transition: opacity 0.5s ease, transform 0.3s ease; /* Suaviza la transición de opacidad y escala */
+}
+
+/* Ajustar la imagen de la tarjeta */
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+/* Capa de gradiente que aparece sobre la imagen */
+.card .layer {
+    background: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 75%;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+/* Información que aparece cuando el hover se aplica */
+.card .info {
+    position: absolute;
+    bottom: -50%;
+    padding: 15px;
+    opacity: 0;
+    transition: 0.5s bottom, 1.75s opacity;
+    font-weight: normal; /* Por defecto, no está en negrita */
+}
+
+/* Cuando se pasa el mouse por encima de la tarjeta, mostramos la capa y la info */
+.card:hover {
+    transform: scale(1.1); /* Escala la tarjeta */
+    z-index: 10; /* Asegura que la tarjeta seleccionada esté encima de las otras */
+}
+
+.card:hover .info {
+    bottom: 0;
+    opacity: 1;
+    font-weight: bold; /* Establecemos la negrita en la información */
+}
+
+.card:hover .layer {
+    opacity: 1;
+}
+
+/* Desenfoque de las tarjetas que no están siendo hover */
+.card-group:hover > .card:not(:hover) {
+    filter: blur(5px); /* Aplica el desenfoque en las tarjetas que no están siendo hover */
+    opacity: 0.6; /* Asegura que las tarjetas opacas tengan menos visibilidad */
+}
+
+/* Asegura que el texto dentro de .info se vea de manera clara */
+.info p {
+    font-size: 14px;
+    margin-top: 3px;
+}
+
+/* Estilo de los botones dentro de .info */
+.info .btn {
+    background: #273330;
+    border: none;
+    padding: 8px 12px;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-top: 8px;
+}
+
+.nav-item.dropdown {
+    position: relative; /* Asegura que el menú se posicione correctamente */
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.nav-item.dropdown > a::after {
+    display: none !important; /* Oculta la flechita */
+}
+
+/* 🔹 Evita que el menú desaparezca inmediatamente */
+.nav-item.dropdown .dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    min-width: 200px; /* Ancho mínimo para evitar cierres rápidos */
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 🔹 Aumenta el área "sensible" para evitar que se cierre rápido */
+.nav-item.dropdown::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 15px; /* Aumenta el área donde el usuario puede mover el mouse */
+    background: transparent;
+}
+
+@media (max-width: 1024px) {
+    .card-1 {
+      max-width: 100%; /* Se expande para ocupar toda la pantalla */
+    }
+  
+    .row-1 {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  
+    .col-md-4 {
+      flex: 1 1 50%; /* La imagen ocupará el 50% del ancho en lugar del 40% */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .col-md-4 img {
+      width: 90%; /* Hace que la imagen ocupe el 90% del contenedor para que sea más grande */
+      height: auto;
+      max-height: 400px; /* Aumenta la altura máxima */
+      object-fit: cover; /* Ajusta la imagen sin perder proporción */
+    }
+  
+    .col-md-8 {
+      flex: 1 1 50%; /* La información ahora ocupa el otro 50% */
+    }
+  
+    .card-body-1 ul {
+      padding-left: 0;
+    }
+  }
+
+
+.card-body-1 ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.card-body-1 ul li {
+    display: flex; /* Mantiene todo en la misma línea */
+    align-items: center; /* Asegura alineación vertical */
+    margin-bottom: 20px;
+}
+
+.card-body-1 ul li i {
+    margin-right: 15px; /* Espacio entre el icono y el texto */
+    font-size: 1.2em; /* Ajusta el tamaño del icono */
+    color: #273330; /* Cambia el color del icono si es necesario */
+}
+
+.card-body-1 ul li h4 {
+    margin: 0; /* Evita espacios innecesarios */
+    display: inline; /* Hace que <h4> se comporte como texto en línea */
+}
+
+form {
+    background-color: #f8f9fa;
+}
+  
+input, select, textarea {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 4px;
+    font-size: 1rem;
+    width: 100%;
+    margin-left: 0;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #495057;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+button {
+    font-size: 1.2rem;
+    border-radius: 0%;
+}
+
+label {
+    margin-right: none; /* Acorta el espacio entre el label y el campo */
+}
